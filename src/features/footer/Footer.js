@@ -58,6 +58,14 @@ const ColorFilters = ({ value: colors, onChange }) => {
       </label>
     )
   })
+  return (
+    <div className="filters colorFilters">
+      <h5>Filter by Color</h5>
+      <form action="" className="colorSelection">
+        {renderedColors}
+      </form>
+    </div>
+  )
 }
 
 const Footer = () => {
