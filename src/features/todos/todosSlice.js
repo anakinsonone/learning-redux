@@ -1,3 +1,5 @@
+import { client } from '../../api/client'
+
 const initialState = []
 
 function nextTodoId(todos) {
@@ -7,6 +9,9 @@ function nextTodoId(todos) {
 
 export default function todosReducer(state = initialState, action) {
   switch (action.type) {
+    case 'todos/todosLoaded': {
+      return action.payload
+    }
     case 'todos/todoAdded': {
       return [
         ...state,
@@ -53,5 +58,24 @@ export default function todosReducer(state = initialState, action) {
     }
     default:
       return state
+  }
+}
+
+//Thunk function
+export async function fetchTodos(dispatch, getState) {
+  const response = await client.get('/fakeApi/todos')
+
+  const stateBefore = getState()
+  console.log('State before: ', stateBefore)
+  dispatch({ type: 'todos/todosLoaded', payload: response.todos })
+  const stateAfter = getState()
+  console.log('State after: ', stateAfter)
+}
+
+export function saveNewTodo(text) {
+  return async function saveNewTodoThunk(dispatch, getState) {
+    const initialTodo = { text }
+    const response = await client.post('/fakeApi/todos', { todo: initialTodo })
+    dispatch({ type: 'todos/todoAdded', payload: response.todo })
   }
 }
