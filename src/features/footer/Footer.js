@@ -74,7 +74,7 @@ const Footer = () => {
 
   const todosRemaining = useSelector((state) => {
     const uncompletedTodos = state.todos.filter((todo) => !todo.completed)
-    return uncompletedTodos
+    return uncompletedTodos.length
   })
 
   const { status, colors } = useSelector((state) => state.filters)
@@ -108,7 +108,7 @@ const Footer = () => {
           Clear Completed
         </button>
       </div>
-      <RemainingTodos count={todosRemaining.length} />
+      <RemainingTodos count={todosRemaining} />
       <StatusFilter value={status} onChange={onStatusChange} />
       <ColorFilters value={colors} onChange={onColorChange} />
     </footer>
