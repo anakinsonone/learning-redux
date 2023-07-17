@@ -108,7 +108,7 @@ const Footer = () => {
           Clear Completed
         </button>
       </div>
-      <RemainingTodos count={todosRemaining} />
+      <RemainingTodos count={todosRemaining.length} />
       <StatusFilter value={status} onChange={onStatusChange} />
       <ColorFilters value={colors} onChange={onColorChange} />
     </footer>
