@@ -9,8 +9,8 @@ const selectTodoById = (state, todoId) => {
   return state.todos.find((todo) => todo.id === todoId)
 }
 
-const TodoListItem = ({ id }) => {
-  const todo = useSelector((state) => selectTodoById(state, id))
+const TodoListItem = ({ todoId }) => {
+  const todo = useSelector((state) => selectTodoById(state, todoId))
   const { text, completed, color } = todo
 
   const dispatch = useDispatch()
