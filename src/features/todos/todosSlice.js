@@ -15,11 +15,7 @@ export default function todosReducer(state = initialState, action) {
     case 'todos/todoAdded': {
       return [
         ...state,
-        {
-          id: nextTodoId(state),
-          text: action.payload,
-          completed: false,
-        },
+        action.payload,
       ]
     }
     case 'todos/todoToggled': {
